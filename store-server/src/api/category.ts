@@ -18,5 +18,24 @@ router
     ctx.body = category
   })
 
+  .post('/', async (ctx, next) => {    
+    const result = await db('category').insert(ctx.request.body)
+    if(result.length <= 0){
+      ctx.response.status = 400
+      return
+    }
+    const id = result[0]
+    ctx.body = await findById(id).first()
+  })
+  .put('/:id', async (ctx, next) => {
+    const id = parseInt(ctx.params.id)
+    delete ctx.request.body.id
+    const rowUpdated = await findById(id).update(ctx.request.body)
+    if(rowUpdated == 0){
+      ctx.response.status = 404
+      return
+    }
+    ctx.body = await findById(id).first()
+  })
 
 export default router
