@@ -3,10 +3,14 @@ import Book from "../models/Book";
 import config from "../config";
 import axios from 'axios';
 
+interface BookFilter {
+  categoryId: string
+}
+
 export class BookRepository implements IRepository<Book> {
   urlPrefix = config.remoteRepositoryUrlPrefix
 
-  async getAll(): Promise<Book[] | null>{
+  async getAll(filter: BookFilter): Promise<Book[] | null>{
     const result = await axios.get<Book[]>(`${this.urlPrefix}/book`)
 
     return result.data
