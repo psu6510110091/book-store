@@ -1,7 +1,7 @@
-import { CategoryRepository } from './CategoryRepository'
+import { CategoryRepository } from "./CategoryRepository"
 
-const repositorise = {
-  categorise: new CategoryRepository()
+const repositories = {
+  categories: new CategoryRepository()
 }
 
-export default repositorise
+export default repositories
