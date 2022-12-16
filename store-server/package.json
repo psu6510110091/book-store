@@ -19,6 +19,7 @@
   },
   "dependencies": {
     "knex": "^2.3.0",
+    "knex-stringcase": "^1.4.6",
     "koa": "^2.14.1",
     "koa-json": "^2.0.2",
     "koa-router": "^12.0.0"
