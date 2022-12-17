@@ -1,5 +1,6 @@
 import { useEffect, useState, useRef } from 'react'
 import BookDetail from './components/BookDetail'
+import BookForm from './components/BookForm'
 import Book from './models/Book'
 import Category from './models/Category'
 import Repo from './repositories'
@@ -31,16 +32,17 @@ function App() {
       <div>
       <select onChange={e => setFilter(e.target.value)}>
           <option value={''}>All</option>
-          {categoryList.map(category => 
+          {categoryList.map(category =>
             <option key={category.id} value={category.id}> {category.title}</option>
           )}
         </select>
         <hr />
       </div>
 
-      {bookList.map( book => 
+      {bookList.map( book =>
         <div key={book.id}>
-          <BookDetail {...book}/> 
+          <BookDetail {...book}/>
+          <BookForm book={book} categoryList={categoryList}/>
           <hr />
         </div>
       )}
