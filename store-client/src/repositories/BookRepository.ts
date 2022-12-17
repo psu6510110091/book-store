@@ -9,8 +9,11 @@ interface BookFilter {
 
 export class BookRepository implements IRepository<Book> {
   urlPrefix = config.remoteRepositoryUrlPrefix
-
+  
   async getAll(filter: BookFilter): Promise<Book[] | null>{
+    const params = {
+      categoryId: filter.categoryId
+    }
     const result = await axios.get<Book[]>(`${this.urlPrefix}/book`)
 
     return result.data
@@ -38,6 +41,5 @@ export class BookRepository implements IRepository<Book> {
   async delete(id: number|string): Promise<void>{
     const result = await axios.delete<Book>(`${this.urlPrefix}/book/${id}`)
     console.log(result.data)
-
   }
 }
